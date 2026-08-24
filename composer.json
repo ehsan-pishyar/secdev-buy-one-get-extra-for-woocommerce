@@ -1,0 +1,29 @@
+{
+  "name": "secdev/secdev-buy-one-get-extra",
+  "description": "Automatically reward customers with free products when they purchase eligible items. Apply promotions to all products, selected categories, tags, or specific products.",
+  "type": "wordpress-plugin",
+  "minimum-stability": "stable",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Ehsan Pishyar",
+      "email": "ehsan.pishyar@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "SDBOGE\\Core\\": "includes/Core",
+      "SDBOGE\\Admin\\": "includes/Admin",
+      "SDBOGE\\Helpers\\": "includes/Helpers",
+      "SDBOGE\\Front\\": "includes/Front"
+    }
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  }
+}
