@@ -93,9 +93,11 @@ class SDBOGE_Plugin {
 	 */
 	function sdboge_admin_scripts(): void {
 		wp_register_script('sdboge-select2', SDBOGE_URI . 'assets/js/select2.min.js', ['jquery'], '4.1.0', true);
-		wp_register_script('sdboge-admin', SDBOGE_URI . 'assets/js/admin.js', ['jquery'], '1.0.0', true);
+		wp_register_script('sdboge-admin', SDBOGE_URI . 'assets/js/sdboge_admin.js', ['jquery'], '1.0.0', true);
+        wp_register_script('sdboge-condition-tags', SDBOGE_URI . 'assets/js/sdboge_condition_tags.js', ['jquery'], '1.0.0', true);
 		wp_enqueue_script('sdboge-select2');
 		wp_enqueue_script('sdboge-admin');
+		wp_enqueue_script('sdboge-condition-tags');
 	}
 
 	/**
