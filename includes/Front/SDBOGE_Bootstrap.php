@@ -28,35 +28,39 @@ class SDBOGE_Bootstrap {
 	}
 
 	public function __construct() {
-		$settings = new SDBOGE_Settings();
-		$displayContext = new SDBOGE_DisplayContext($settings);
-
-		if (!$displayContext->sdboge_should_boot()) return;
-
-		$rewardSettings = new SDBOGE_RewardSettings($settings);
-		$productEligibility = new SDBOGE_ProductEligibility();
-		$rewardCalculator = new SDBOGE_RewardCalculator();
-		$rewardProductResolver = new SDBOGE_RewardProductResolver();
-		$rewardCartManager = new SDBOGE_RewardCartManager();
-		$rewardCartRestrictions = new SDBOGE_RewardCartRestrictions();
-		$rewardCartCleanup = new SDBOGE_RewardCartCleanup();
-		$alternativeRewardMessage = new SDBOGE_AlternativeRewardMessage($settings);
-		$excludedCouponChecker = new SDBOGE_ExcludedCouponChecker();
-
-		$rewardSynchronizer = new SDBOGE_RewardSynchronizer(
-			$rewardSettings,
-			$productEligibility,
-			$rewardCalculator,
-			$rewardProductResolver,
-			$rewardCartManager,
-			$excludedCouponChecker
-		);
-
-		new SDBOGE_FrontLogic(
-			$rewardSynchronizer,
-			$rewardCartRestrictions,
-			$rewardCartCleanup,
-			$alternativeRewardMessage,
-		);
+        $this->sdboge_boot_front();
 	}
+
+    function sdboge_boot_front(): void {
+        $settings = new SDBOGE_Settings();
+        $displayContext = new SDBOGE_DisplayContext($settings);
+
+        if (!$displayContext->sdboge_should_boot()) return;
+
+        $rewardSettings = new SDBOGE_RewardSettings($settings);
+        $productEligibility = new SDBOGE_ProductEligibility();
+        $rewardCalculator = new SDBOGE_RewardCalculator();
+        $rewardProductResolver = new SDBOGE_RewardProductResolver();
+        $rewardCartManager = new SDBOGE_RewardCartManager();
+        $rewardCartRestrictions = new SDBOGE_RewardCartRestrictions();
+        $rewardCartCleanup = new SDBOGE_RewardCartCleanup();
+        $alternativeRewardMessage = new SDBOGE_AlternativeRewardMessage($settings);
+        $excludedCouponChecker = new SDBOGE_ExcludedCouponChecker();
+
+        $rewardSynchronizer = new SDBOGE_RewardSynchronizer(
+            $rewardSettings,
+            $productEligibility,
+            $rewardCalculator,
+            $rewardProductResolver,
+            $rewardCartManager,
+            $excludedCouponChecker
+        );
+
+        new SDBOGE_FrontLogic(
+            $rewardSynchronizer,
+            $rewardCartRestrictions,
+            $rewardCartCleanup,
+            $alternativeRewardMessage,
+        );
+    }
 }

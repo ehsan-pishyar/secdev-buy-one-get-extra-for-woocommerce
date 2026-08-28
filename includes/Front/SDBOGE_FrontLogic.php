@@ -44,8 +44,9 @@ class SDBOGE_FrontLogic {
 		add_action( 'woocommerce_cart_item_removed', [$this->rewardCartCleanup, 'sdboge_remove_reward_with_trigger' ], 10, 2 );
 
 		/**
-		 * After cart table hook for an alternative reward product message.
+		 * Before cart table and before checkout form hook for an alternative reward product message.
 		 */
 		add_action( 'woocommerce_before_cart_contents', [$this->alternativeRewardMessage, 'sdboge_render' ] );
+		add_action( 'woocommerce_before_checkout_form', [$this->alternativeRewardMessage, 'sdboge_render' ] );
 	}
 }

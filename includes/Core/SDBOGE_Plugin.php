@@ -105,7 +105,7 @@ class SDBOGE_Plugin {
 	 * Cart page styles
 	 */
 	function sdboge_cart_page_styles(): void {
-		if (!is_cart()) return;
+		if (!is_cart() && !is_checkout()) return;
 
 		wp_register_style( 'sdboge-tailwindcss-front', SDBOGE_URI . 'src/output.css', [], '4.3');
 		wp_enqueue_style( 'sdboge-tailwindcss-front' );

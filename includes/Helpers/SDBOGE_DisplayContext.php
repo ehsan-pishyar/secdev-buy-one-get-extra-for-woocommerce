@@ -12,11 +12,10 @@ if (!defined('ABSPATH')) exit;
 class SDBOGE_DisplayContext {
 	public function __construct(private readonly SDBOGE_Settings $settings) {}
 
-	function sdboge_should_boot(): bool {
-		return !$this->sdboge_is_admin() && $this->settings->sdboge_enabled() && !defined('DOING_AJAX');
-	}
+    function sdboge_should_boot(): bool {
+        if (!$this->settings::sdboge_enabled()) return false;
+        if (is_admin() && !wp_doing_ajax()) return false;
 
-	private function sdboge_is_admin(): bool {
-		return is_admin();
-	}
+        return true;
+    }
 }
